@@ -8,6 +8,11 @@ namespace SimpleCommerce.Models
 {
     public class Category
     {
+        public Category()
+        {
+            Products = new HashSet<Product>();
+        }
+
         public int Id { get; set; } 
         [Required]
         [StringLength(200)]
@@ -16,5 +21,8 @@ namespace SimpleCommerce.Models
         
         [Display(Name="Ürünler:")]
         public virtual ICollection<Product> Products { get; set; }
+
+        [Display(Name = "Kategori Fotoğrafı:")]
+        public string Photo { get; set; }
     }
 }

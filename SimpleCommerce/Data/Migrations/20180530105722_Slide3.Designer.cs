@@ -11,9 +11,10 @@ using System;
 namespace SimpleCommerce.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180530105722_Slide3")]
+    partial class Slide3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -235,8 +236,6 @@ namespace SimpleCommerce.Data.Migrations
 
                     b.Property<string>("Photo")
                         .HasMaxLength(200);
-
-                    b.Property<int>("Posetion");
 
                     b.Property<string>("Url")
                         .HasMaxLength(200);
