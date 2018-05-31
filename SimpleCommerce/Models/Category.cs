@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -21,6 +22,14 @@ namespace SimpleCommerce.Models
         
         [Display(Name="Ürünler:")]
         public virtual ICollection<Product> Products { get; set; }
+        [NotMapped]
+        public ICollection<Product> PublishedProducts
+        {
+            get
+            {
+                return Products.Where(p => p.IsPublished == true).ToList();
+            }
+        }
 
         [Display(Name = "Kategori Fotoğrafı:")]
         public string Photo { get; set; }

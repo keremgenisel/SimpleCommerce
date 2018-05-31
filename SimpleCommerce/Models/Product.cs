@@ -37,5 +37,13 @@ namespace SimpleCommerce.Models
         [Display(Name="Oluşturulma Tarihi:")]
         public DateTime? CreateDate { get; set; }
 
+        [Display(Name="Öne Çıkan Mı ?:")]
+        public bool IsFeatured { get; set; }
+
+        [Display(Name="Yayında Mı? :")]
+        public bool IsPublished { get; set; }
+
+        
+
     }
 }

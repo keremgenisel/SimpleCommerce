@@ -194,7 +194,7 @@
                         @foreach (var category in ViewBag.ProductsCategories)
                         {
                             <li>
-                                <a href="@Url.Action("Index","Products",new { categoryId = category.Id })">@category.Name</a> <span class="count">(@category.Products.Count)</span>
+                                <a href="@Url.Action("Index","Products",new { categoryId = category.Id })">@category.Name</a> <span class="count">(@category.PublishedProducts.Count)</span>
                             </li>
                         }
                     </ul>

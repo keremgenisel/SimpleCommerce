@@ -18,7 +18,7 @@ namespace SimpleCommerce.Controllers
         }
         public IActionResult Index()
         {
-            ViewBag.FeaturedProducts = _context.Products.Take(8).ToList();
+            ViewBag.FeaturedProducts = _context.Products.Where(f => f.IsFeatured == true && f.IsPublished == true).Take(8).ToList();
             ViewBag.BrowserOurCategories = _context.Categories.Take(4).ToList();
             ViewBag.Slides = _context.Slides.Where(s=>s.IsPublished == true).OrderBy(o=>o.Posetion).Take(3).ToList();
             return View();

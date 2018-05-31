@@ -19,8 +19,8 @@ namespace SimpleCommerce.Controllers
         {
             ViewBag.ProductsCategories = _context.Categories.Include(c => c.Products).ToList();
             ViewBag.SelectedCategory = _context.Categories.Where(c => c.Id == CategoryId).FirstOrDefault();
-            ViewBag.LatestProduct = _context.Products.OrderByDescending(o => o.CreateDate).Take(3).ToList();
-            var products = _context.Products.Where(p => (CategoryId !=0 ? p.CategoryId == CategoryId : true));
+            ViewBag.LatestProduct = _context.Products.Where(ı=> ı.IsPublished == true).OrderByDescending(o => o.CreateDate).Take(3).ToList();
+            var products = _context.Products.Where(p => (CategoryId !=0 ? p.CategoryId == CategoryId : true) && p.IsPublished == true);
             switch (order)
             {
                 case "date-asc":

@@ -25,7 +25,8 @@
             <div class="form-group">
                 <input asp-for="Photo" type="hidden" />
                 <label asp-for="Photo" class="control-label"></label>
-                @if (!string.IsNullOrEmpty(Model.Photo)) {
+                @if (!string.IsNullOrEmpty(Model.Photo))
+                {
                     <img src="~/Uploads/@Model.Photo" width="50" />
                 }
                 <input name="File" type="file" class="form-control" />
@@ -43,12 +44,26 @@
             </div>
             <div class="form-group">
                 <label asp-for="CategoryId" class="control-label"></label>
-                <select asp-for="CategoryId" class ="form-control" asp-items="ViewBag.CategoryId"></select>
+                <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
             </div>
             <div class="form-group">
                 <label asp-for="CreateDate" class="control-label"></label>
                 <input asp-for="CreateDate" class="form-control" />
                 <span asp-validation-for="CreateDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="IsFeatured" /> @Html.DisplayNameFor(model => model.IsFeatured)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="IsPublished" /> @Html.DisplayNameFor(model => model.IsPublished)
+                    </label>
+                </div>
             </div>
             <div class="form-group">
                 <input type="submit" value="Oluştur" class="btn btn-success" />
