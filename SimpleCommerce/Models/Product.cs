@@ -30,5 +30,12 @@ namespace SimpleCommerce.Models
         [Display(Name="Kategori:")]
         public Category Category { get; set; }
 
+        public Product()
+        {
+            CreateDate = DateTime.Now;
+        }
+        [Display(Name="Oluşturulma Tarihi:")]
+        public DateTime? CreateDate { get; set; }
+
     }
 }

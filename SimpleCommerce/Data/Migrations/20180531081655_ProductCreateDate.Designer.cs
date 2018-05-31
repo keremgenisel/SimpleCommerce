@@ -11,9 +11,10 @@ using System;
 namespace SimpleCommerce.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180531081655_ProductCreateDate")]
+    partial class ProductCreateDate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -202,7 +203,7 @@ namespace SimpleCommerce.Data.Migrations
 
                     b.Property<int>("CategoryId");
 
-                    b.Property<DateTime?>("CreateDate");
+                    b.Property<DateTime>("CreateDate");
 
                     b.Property<string>("Description");
 
