@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using ReflectionIT.Mvc.Paging;
 using SimpleCommerce.Data;
 using SimpleCommerce.Models;
 
@@ -27,10 +28,13 @@ namespace SimpleCommerce.Areas.Admin.Controllers
         }
 
         // GET: Admin/Products
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int page = 1, string sortExpression = "CreateDate")
         {
-            var applicationDbContext = _context.Products.Include(p => p.Category);
-            return View(await applicationDbContext.ToListAsync());
+            
+            
+            var products = _context.Products.Include(p => p.Category);
+            var model = await PagingList.CreateAsync(products, 6, page, sortExpression, "CreateDate");
+            return View(model);
         }
 
         // GET: Admin/Products/Details/5
