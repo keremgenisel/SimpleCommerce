@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Product>;
+﻿@model PagingList<Product>;
 <!-- PAGE TITLE -->
 <section id="page-title" class="page-title-parallax page-title-center text-dark" style="background-image:/url(images/parallax/page-title-parallax.jpg);">
     <div class="container">
@@ -141,7 +141,7 @@
                                         <h3><a href="/#">@product.Name</a></h3>
                                     </div>
                                     <div class="product-price">
-                                        <ins>@product.Price</ins>
+                                        <ins>₺@product.Price</ins>
                                     </div>
                                 </div>
                             </div>
@@ -149,36 +149,7 @@
                         }
                     </div>
                     <nav class="text-center">
-                        <div class="pagination-wrap">
-                            <ul class="pagination">
-                                <li>
-                                    <a href="/#" aria-label="Previous">
-                                        <span aria-hidden="true"><i class="fa fa-angle-left"></i></span>
-
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="/#">1</a>
-                                </li>
-                                <li>
-                                    <a href="/#">2</a>
-                                </li>
-                                <li class="active">
-                                    <a href="/#">3</a>
-                                </li>
-                                <li>
-                                    <a href="/#">4</a>
-                                </li>
-                                <li>
-                                    <a href="/#">5</a>
-                                </li>
-                                <li>
-                                    <a href="/#" aria-label="Next">
-                                        <span aria-hidden="true"><i class="fa fa-angle-right"></i></span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
+                        <vc:pager paging-list="@Model" />
                     </nav>
                 </div>
                 <!--END: Product list-->
@@ -215,7 +186,7 @@
                                     <h3><a href="@Url.Action("Details","Products", new { id = product.Id})">@product.Name</a></h3>
                                 </div>
                                 <div class="product-price">
-                                    <ins>@product.Price</ins>
+                                    <ins>₺@product.Price</ins>
                                 </div>
                             </div>
                         </div>}

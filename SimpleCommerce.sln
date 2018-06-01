@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2000
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleCommerce", "SimpleCommerce\SimpleCommerce.csproj", "{08046BB9-DFF7-4285-907F-8626B1ACDCC7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleCommerce", "SimpleCommerce\SimpleCommerce.csproj", "{08046BB9-DFF7-4285-907F-8626B1ACDCC7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReflectionIT.Mvc.Paging", "ReflectionIT.Mvc.Paging\ReflectionIT.Mvc.Paging.csproj", "{199ED7A5-20EF-4EB3-99BC-A166D41417C8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{08046BB9-DFF7-4285-907F-8626B1ACDCC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{08046BB9-DFF7-4285-907F-8626B1ACDCC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{08046BB9-DFF7-4285-907F-8626B1ACDCC7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{199ED7A5-20EF-4EB3-99BC-A166D41417C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{199ED7A5-20EF-4EB3-99BC-A166D41417C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{199ED7A5-20EF-4EB3-99BC-A166D41417C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{199ED7A5-20EF-4EB3-99BC-A166D41417C8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
