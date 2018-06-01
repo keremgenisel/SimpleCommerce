@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
 using ReflectionIT.Mvc.Paging;
 using SimpleCommerce.Data;
@@ -28,12 +29,14 @@ namespace SimpleCommerce.Areas.Admin.Controllers
         }
 
         // GET: Admin/Products
-        public async Task<IActionResult> Index(int page = 1, string sortExpression = "CreateDate")
+        public async Task<IActionResult> Index(int? categoryId,int page = 1, string sortExpression = "CreateDate")
         {
             
             
-            var products = _context.Products.Include(p => p.Category);
+            var products = _context.Products.Include(i => i.Category).Where(p => (categoryId.HasValue ? p.CategoryId == categoryId:true));
             var model = await PagingList.CreateAsync(products, 6, page, sortExpression, "CreateDate");
+            model.RouteValue = new RouteValueDictionary { { "categoryId",categoryId } };
+            ViewBag.Categories = new SelectList(_context.Categories.ToList(),"Id","Name",categoryId);
             return View(model);
         }
 
