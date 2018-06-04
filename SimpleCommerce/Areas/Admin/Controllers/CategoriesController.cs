@@ -8,7 +8,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
+using ReflectionIT.Mvc.Paging;
 using SimpleCommerce.Data;
 using SimpleCommerce.Models;
 
@@ -27,9 +29,16 @@ namespace SimpleCommerce.Areas.Admin.Controllers
         }
 
         // GET: Admin/Categories
-        public async Task<IActionResult> Index()
+        //sayfalama için int page=1 ve string sortExpression ekledik. var categories = _context.Categories , yazdık.
+        //var model = await PagingList.CreateAsync(categories, 3, page, sortExpression, "Id"); yi ekledik
+        //return View (model) yazıp bitirdik.
+        public async Task<IActionResult> Index(int page = 1, string sortExpression = "Id")
         {
-            return View(await _context.Categories.ToListAsync());
+            var categories = _context.Categories;
+            
+            var model = await PagingList.CreateAsync(categories, 3, page, sortExpression, "Id");
+          
+            return View(model);
         }
 
         // GET: Admin/Categories/Details/5

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SimpleCommerce.Models.Category>
+﻿@model PagingList<Category>;
 
 @{
     ViewData["Title"] = "Kategoriler";
@@ -39,3 +39,4 @@
 }
     </tbody>
 </table>
+<vc:pager paging-list="@Model" />

@@ -15,6 +15,9 @@
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     </environment>
+    <!--datatables ın css linki-->
+    <link href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <!--Bitiş-->
 </head>
 <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -67,7 +70,16 @@
         </script>
         <script src="~/js/site.min.js" asp-append-version="true"></script>
     </environment>
-
+    <!--datatables.net ten hazır olarak admin slide için sayfalama ve search butonu ekledik.-->
+    <script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script>
+    $(document).ready(function () {
+        $('#tblRecords').DataTable({
+            "language": { "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Turkish.json" }
+        });
+        });</script>
+    <!--language ekledik türkçeleştirmek için-->
+    <!--bitişi-->
     @RenderSection("Scripts", required: false)
 </body>
 </html>

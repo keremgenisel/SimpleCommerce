@@ -47,6 +47,18 @@ namespace SimpleCommerce.Controllers
             return View(model);
         }
 
+
+        //ürünler sayfasında ürün detaylarını yaptık. kök dizinde ki home klasörünün altına details view oluşturduk.
+        public IActionResult Details (int id)
+        {
+            var product = _context.Products.Include(i=>i.Category).Where(p => p.IsPublished == true && p.Id == id).FirstOrDefault();
+            if(product == null)
+            {
+                return NotFound();
+            }
+            return View(product);
+        }
+
     }
 
 }
