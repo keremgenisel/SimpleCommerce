@@ -59,6 +59,17 @@ namespace SimpleCommerce.Controllers
             return View(product);
         }
 
+        // ürünler sayfasında ürün detaylarını quick view şeklinde yaptık kök dizinde ki home klasörünün altına summary view oluşturduk.details sayfasından gerekli kodları summaryye yapıştırdık.
+        public IActionResult Summary (int id)
+        {
+            var product = _context.Products.Include(i => i.Category).Where(p => p.IsPublished == true && p.Id == id).FirstOrDefault();
+            if (product == null)
+            {
+                return NotFound();
+            }
+            return View(product);
+        }
+
     }
 
 }
