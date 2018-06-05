@@ -43,7 +43,7 @@ namespace SimpleCommerce.Models
         [Display(Name="Yayında Mı? :")]
         public bool IsPublished { get; set; }
 
-        
+        public virtual ICollection<CartItem> CartItems { get; set; }
 
     }
 }
