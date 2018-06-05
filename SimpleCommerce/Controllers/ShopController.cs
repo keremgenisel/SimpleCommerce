@@ -75,6 +75,10 @@ namespace SimpleCommerce.Controllers
             return View(cart);
         }
 
+        public IActionResult Checkout()
+        {
+            return View();
+        }
         
     }
 }
