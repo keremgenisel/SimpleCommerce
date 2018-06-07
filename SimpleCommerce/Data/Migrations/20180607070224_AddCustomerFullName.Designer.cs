@@ -12,9 +12,10 @@ using System;
 namespace SimpleCommerce.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180607070224_AddCustomerFullName")]
+    partial class AddCustomerFullName
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -301,13 +302,11 @@ namespace SimpleCommerce.Data.Migrations
 
                     b.Property<DateTime>("CreateDate");
 
-                    b.Property<int?>("CustomerId");
+                    b.Property<int>("CustomerId");
 
                     b.Property<int>("OrderStatus");
 
                     b.Property<string>("Owner");
-
-                    b.Property<string>("ShippingNotes");
 
                     b.HasKey("Id");
 
@@ -462,7 +461,8 @@ namespace SimpleCommerce.Data.Migrations
 
                     b.HasOne("SimpleCommerce.Models.Customer", "Customer")
                         .WithMany("Orders")
-                        .HasForeignKey("CustomerId");
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("SimpleCommerce.Models.Product", b =>

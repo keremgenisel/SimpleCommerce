@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -10,6 +11,14 @@ namespace SimpleCommerce.Models
         public int Id { get; set; }
         public string BillingFirstName { get; set; }
         public string BillingLastName { get; set; }
+        [NotMapped]
+        public string FullName
+        {
+            get
+            {
+                return BillingFirstName + " " + BillingLastName;
+            }
+        }
         public string BillingIdentityNumber { get; set; }
         public string BillingCompanyName { get; set; }
         public string BillingCountry { get; set; }
@@ -36,7 +45,7 @@ namespace SimpleCommerce.Models
         public string ShippingEmail { get; set; }
         public string ShippingPhone { get; set; }
 
-        public string UserName { get; set; }    
+        public string UserName { get; set; }
         public virtual ICollection<Order> Orders { get; set; }
 
     }

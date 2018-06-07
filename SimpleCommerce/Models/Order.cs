@@ -22,13 +22,15 @@ namespace SimpleCommerce.Models
         [ForeignKey("CartId")]
         public Cart Cart { get; set; }
 
-        public int CustomerId { get; set; }
+        public int? CustomerId { get; set; }
         [ForeignKey("CustomerId")]
         public Customer Customer { get; set; }
         
 
         public OrderStatus OrderStatus { get; set; }
         //adres bilgileri
+
+        public string ShippingNotes { get; set; }
 
     }
 }

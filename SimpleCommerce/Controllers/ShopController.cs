@@ -2,15 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SimpleCommerce.Data;
 using SimpleCommerce.Models;
 
 namespace SimpleCommerce.Controllers
 {
-    public class ShopController : ControllerBase 
+    public class ShopController : ControllerBase
     {
         public ShopController(ApplicationDbContext context) : base(context)
         {
@@ -61,10 +63,10 @@ namespace SimpleCommerce.Controllers
             }
             _context.SaveChanges();
             HttpContext.Session.SetString("CartId", cart.Id.ToString());
-            return Json(cart.CartItems.Sum(ci=> ci.Quantity));
+            return Json(cart.CartItems.Sum(ci => ci.Quantity));
         }
 
-        public  IActionResult Cart ()
+        public IActionResult Cart()
         {
             string owner = User.Identity.Name;
             if (string.IsNullOrEmpty(owner))
@@ -75,10 +77,33 @@ namespace SimpleCommerce.Controllers
             return View(cart);
         }
 
+        [Authorize]
         public IActionResult Checkout()
         {
-            return View();
+
+            string owner = User.Identity.Name;
+            if (string.IsNullOrEmpty(owner))
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            var order = GetOrder(owner);
+            ViewBag.Countries = new SelectList(_context.Regions.Where(r => r.RegionType == RegionType.Country).OrderBy(o => o.Name).ToList(), "Code", "Name");
+            return View(order);
         }
-        
+
+        public Order GetOrder(string owner)
+        {
+            Order order = _context.Orders.Where(o => o.Owner == owner).FirstOrDefault();
+            if (order == null)
+            {
+                order = new Order();
+                order.CartId = Convert.ToInt32(HttpContext.Session.GetString("CartId"));
+                order.OrderStatus = OrderStatus.WaitingPaymentApproval;
+                _context.Orders.Add(order);
+                _context.SaveChanges();
+            }
+            return order;
+                    }
+
     }
 }

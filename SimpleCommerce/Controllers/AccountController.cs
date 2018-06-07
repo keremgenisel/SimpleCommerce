@@ -5,6 +5,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -30,7 +31,7 @@ namespace SimpleCommerce.Controllers
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             IEmailSender emailSender,
-            ILogger<AccountController> logger , ApplicationDbContext context):base(context)
+            ILogger<AccountController> logger, ApplicationDbContext context) : base(context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -66,6 +67,14 @@ namespace SimpleCommerce.Controllers
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
+                    // sepet owner güncellemesi
+                    var cartId = Convert.ToInt32(HttpContext.Session.GetString("CartId"));
+                    var cart = _context.Carts.FirstOrDefault(c => c.Id == cartId);
+                    if (cart != null)
+                    {
+                        cart.Owner = User.Identity.Name;
+                        _context.SaveChanges();
+                    }
                     return RedirectToLocal(returnUrl);
                 }
                 if (result.RequiresTwoFactor)
